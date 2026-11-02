@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
@@ -8,6 +9,7 @@ csrf = CSRFProtect()
 
 def create_app(config_class=Config):
     app = Flask(__name__, instance_relative_config=True)
+    os.makedirs(app.instance_path, exist_ok=True)
     app.config.from_object(config_class)
     db.init_app(app)
     csrf.init_app(app)
