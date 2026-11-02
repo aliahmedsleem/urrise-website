@@ -14,3 +14,9 @@
 .site-footer .brand-logo{width:200px;height:84px;object-fit:contain}
 .hero-brand-logo{width:min(44vw,520px);height:auto;max-height:none;object-fit:contain}
 @media(max-width:700px){.site-header .brand-logo{width:150px;height:64px}.site-footer .brand-logo{width:160px;height:68px}.hero-brand-logo{width:78vw;height:auto}}
+
+/* Final legibility pass for the horizontal brand lockup */
+.site-header .brand-logo{width:240px;height:76px;object-fit:contain}
+.site-footer .brand-logo{width:250px;height:80px;object-fit:contain}
+.hero-brand-logo{width:min(48vw,560px);height:auto;max-height:none;object-fit:contain}
+@media(max-width:700px){.site-header .brand-logo{width:175px;height:58px}.site-footer .brand-logo{width:185px;height:62px}.hero-brand-logo{width:82vw;height:auto}}
