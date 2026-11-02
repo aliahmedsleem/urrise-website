@@ -1,36 +1,58 @@
 # URRISE Technologies — Official Website
 
-Official corporate website and content management system for URRISE Technologies.
+Official corporate website and CMS for URRISE Technologies, built with Flask.
 
-## Product scope
+## Features in this initial foundation
 
-- Responsive corporate landing page
-- Dynamic navigation tabs managed from the CMS
-- News and announcements management
+- Navy and gold responsive corporate landing page
+- Dynamic navigation tabs
+- News creation with draft/published status and public article pages
 - Services and projects management
-- Editable homepage content and calls to action
-- Media library
-- Draft and publish workflow
-- Secure administrator authentication
+- Protected admin dashboard with CSRF protection
+- SQLite database initialization and seed navigation
+- Password hashing for administrator accounts
 
-## Planned stack
+## Stack
 
-- Python and Flask
-- Flask Blueprints
-- Jinja2 templates
-- SQLite for the initial deployment
-- Bootstrap 5 with custom navy and gold styling
-- Nginx and Gunicorn for production
+Python 3.11+, Flask, Flask-SQLAlchemy, Flask-WTF, Jinja2, SQLite, Nginx, Gunicorn.
 
-## Deployment
+## Local setup (PowerShell)
 
-The production website will be served on `https://urrisetech.com`.
-The existing server console remains separate on `https://console.urrisetech.com`.
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+Copy-Item .env.example .env
+```
 
-## Development status
+Edit `.env` and set a long random `SECRET_KEY` and a strong `ADMIN_PASSWORD`. Do not commit `.env`.
 
-Repository initialized. Application implementation is the next phase.
+Create the administrator:
 
-## Security
+```powershell
+$env:SECRET_KEY="your-long-random-secret"
+$env:ADMIN_USERNAME="admin"
+$env:ADMIN_PASSWORD="replace-with-a-strong-password"
+flask --app run.py auth create-admin
+```
 
-Never commit secrets, production environment files, database files, private keys, or credentials.
+Start the development server:
+
+```powershell
+py run.py
+```
+
+Public website: `http://127.0.0.1:5050`
+Admin login: `http://127.0.0.1:5050/admin/login`
+
+## Production notes
+
+- Use a dedicated virtual environment and Gunicorn service.
+- Set `SECRET_KEY`, `DATABASE_URL`, `ADMIN_USERNAME`, and `ADMIN_PASSWORD` through a protected environment file.
+- Enable HTTPS at Nginx and set secure session cookies behind TLS.
+- Keep the SQLite database and uploads outside Git.
+- This initial CMS has create/delete flows for content; editing existing items, media uploads, and richer page builder features are planned next.
+
+## Repository
+
+`https://github.com/aliahmedsleem/urrise-website`
